@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Soal Geografi Kelas 11 — HOTS Interaktif</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --primary-light: #2980b9;
+    --accent: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --bg: #f0f3f7;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #dce1e8;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+    padding: 32px 36px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    box-shadow: var(--shadow);
+  }
+  header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  header p { font-size: 0.92rem; opacity: 0.9; }
+  .info-bar {
+    background: #eaf2f8;
+    padding: 14px 36px;
+    font-size: 0.88rem;
+    color: var(--primary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .info-bar span { display: inline-flex; align-items: center; gap: 4px; }
+  .main { background: var(--card); padding: 32px 36px; border-radius: 0 0 var(--radius) var(--radius); box-shadow: var(--shadow); }
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+    margin: 36px 0 18px;
+  }
+  .section-title:first-child { margin-top: 0; }
+  .question-card {
+    background: #fafbfc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    transition: box-shadow 0.2s;
+  }
+  .question-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .q-num {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .q-text { font-weight: 600; margin-bottom: 12px; font-size: 0.97rem; }
+  .options { display: flex; flex-direction: column; gap: 6px; }
+  .options label {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 12px; border-radius: 8px;
+    cursor: pointer; transition: background 0.15s;
+    font-size: 0.92rem;
+  }
+  .options label:hover { background: #eaf2f8; }
+  .options input[type="radio"] { margin-top: 4px; accent-color: var(--primary); }
+  .tf-options { display: flex; gap: 16px; margin-top: 8px; }
+  .tf-options label {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 24px; border-radius: 8px;
+    border: 2px solid var(--border);
+    cursor: pointer; transition: all 0.2s;
+    font-weight: 600; font-size: 0.92rem;
+  }
+  .tf-options label:hover { border-color: var(--primary-light); background: #eaf2f8; }
+  .tf-options input[type="radio"] { accent-color: var(--accent); }
+  .essay textarea {
+    width: 100%; min-height: 130px; padding: 12px 14px;
+    border: 2px solid var(--border); border-radius: 8px;
+    font-family: inherit; font-size: 0.92rem; resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .essay textarea:focus { outline: none; border-color: var(--primary-light); }
+  .btn-group {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin: 32px 0 18px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px; border: none; border-radius: 8px;
+    font-size: 0.95rem; font-weight: 700; cursor: pointer;
+    transition: all 0.2s; text-decoration: none;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-light); }
+  .btn-success { background: var(--accent); color: #fff; }
+  .btn-success:hover { background: #219a52; }
+  .btn-outline {
+    background: transparent; color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+  .btn-outline:hover { background: #eaf2f8; }
+  .answer-box {
+    display: none;
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--accent);
+    background: #eafaf1;
+  }
+  .answer-box.show { display: block; }
+  .answer-box .label {
+    font-weight: 700; color: var(--accent);
+    font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  .answer-box.explanation {
+    border-left-color: var(--warning);
+    background: #fef9e7;
+  }
+  .answer-box.explanation .label { color: #b7950b; }
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, #1a5276, #2c3e50);
+    color: #fff; border-radius: var(--radius);
+    padding: 28px 32px; margin-top: 24px; text-align: center;
+  }
+  .result-panel.show { display: block; }
+  .result-panel h2 { font-size: 1.4rem; margin-bottom: 8px; }
+  .score-circle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 4px solid var(--accent);
+    font-size: 2rem; font-weight: 800;
+    margin: 14px 0;
+  }
+  .result-detail { font-size: 0.92rem; opacity: 0.9; margin-top: 8px; }
+  .check-btn {
+    margin-top: 8px; font-size: 0.82rem;
+    background: var(--warning); color: #fff;
+    border: none; padding: 6px 16px; border-radius: 6px;
+    cursor: pointer; font-weight: 600;
+  }
+  .check-btn:hover { background: #e67e22; }
+  .footer {
+    text-align: center; padding: 24px 0 10px;
+    font-size: 0.82rem; color: var(--text-light);
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    header, .main, .info-bar { padding-left: 18px; padding-right: 18px; }
+    .tf-options { flex-direction: column; }
+    .tf-options label { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🌏 Bank Soal Geografi — Kelas 11 Kurikulum Merdeka</h1>
+  <p>BAB 1: Posisi Strategis Indonesia &amp; Potensi Sumber Daya Alam | HOTS+++</p>
+</header>
+
+<div class="info-bar">
+  <span>📋 25 Pilihan Ganda</span>
+  <span>✅ 10 Benar/Salah</span>
+  <span>✍️ 5 Essay HOTS</span>
+  <span>📚 Referensi: Erlangga Kelas 11, Canva Kelompok 1-3</span>
+</div>
+
+<div class="main">
+
+<!-- ====================== BAGIAN A: PILIHAN GANDA ====================== -->
+<h2 class="section-title">A. Pilihan Ganda (25 Soal)</h2>
+<div id="pg-container"></div>
+
+<!-- ====================== BAGIAN B: BENAR / SALAH ====================== -->
+<h2 class="section-title">B. Benar / Salah (10 Soal)</h2>
+<div id="tf-container"></div>
+
+<!-- ====================== BAGIAN C: ESSAY HOTS ====================== -->
+<h2 class="section-title">C. Essay HOTS+++ (5 Soal)</h2>
+<div id="essay-container"></div>
+
+<div class="btn-group">
+  <button class="btn btn-success" onclick="checkAll()">✅ Periksa Jawaban PG &amp; B/S</button>
+  <button class="btn btn-outline" onclick="toggleAllAnswers()">📖 Tampilkan Semua Kunci</button>
+  <button class="btn btn-outline" onclick="resetAll()">🔄 Reset</button>
+</div>
+
+<div class="result-panel" id="resultPanel">
+  <h2>📊 Hasil Pengerjaan</h2>
+  <div class="score-circle" id="scoreCircle">0</div>
+  <div class="result-detail" id="resultDetail"></div>
+</div>
+
+<div class="footer">
+  <p>© 2026 Bank Soal Geografi Kelas 11 — Disusun berdasarkan Buku Erlangga Kurikulum Merdeka, Materi Kelompok 1-3, dan Sumber Referensi Terverifikasi</p>
+</div>
+
+</div><!-- /main -->
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// DATA SOAL PILIHAN GANDA (25 SOAL)
+// ============================================================
+const pgData = [
+  {
+    q: "Indonesia terletak di antara Benua Asia dan Australia serta Samudra Hindia dan Pasifik. Kondisi tersebut memberikan keuntungan utama berupa …",
+    opts: [
+      "Indonesia terbebas dari pengaruh budaya asing",
+      "Indonesia menjadi jalur strategis perdagangan dan pelayaran internasional",
+      "Indonesia memiliki iklim subtropis",
+      "Indonesia tidak mengalami perubahan musim",
+      "Indonesia menjadi negara dengan wilayah daratan terbesar di Asia"
+    ],
+    ans: 1,
+    exp: "Letak geografis Indonesia di persilangan jalur perdagangan dunia menjadikannya jalur strategis pelayaran dan perdagangan internasional. Ini bukan berarti terbebas dari budaya asing (justru sebaliknya), dan Indonesia beriklim tropis, bukan subtropis."
+  },
+  {
+    q: "Sebuah perusahaan pelayaran internasional ingin membuka jalur baru yang menghubungkan kawasan Asia Timur dengan Australia. Indonesia menjadi pertimbangan utama karena …",
+    opts: [
+      "Sebagian besar wilayah Indonesia berupa pegunungan",
+      "Indonesia memiliki banyak sungai besar",
+      "Posisi Indonesia berada di persilangan jalur perdagangan dunia",
+      "Indonesia memiliki jumlah penduduk yang besar",
+      "Indonesia memiliki banyak gunung api"
+    ],
+    ans: 2,
+    exp: "Posisi Indonesia yang strategis di persilangan jalur perdagangan dunia menjadi alasan utama perusahaan pelayaran mempertimbangkan Indonesia sebagai jalur penghubung Asia Timur–Australia."
+  },
+  {
+    q: "Letak geografis Indonesia dapat menjadi peluang sekaligus tantangan. Salah satu tantangan yang paling tepat adalah …",
+    opts: [
+      "Sulitnya Indonesia melakukan perdagangan internasional",
+      "Masuknya berbagai pengaruh budaya asing yang harus disikapi secara selektif",
+      "Berkurangnya keanekaragaman budaya Indonesia",
+      "Indonesia tidak dapat menjalin hubungan dengan negara lain",
+      "Kegiatan ekonomi hanya dapat dilakukan di wilayah pesisir"
+    ],
+    ans: 1,
+    exp: "Tantangan letak geografis Indonesia adalah masuknya arus budaya asing yang harus disikapi secara bijak agar tidak mengikis budaya lokal, bukan kesulitan perdagangan (justru memudahkan)."
+  },
+  {
+    q: "Pemerintah ingin meningkatkan perekonomian dengan memanfaatkan posisi strategis Indonesia. Kebijakan yang paling tepat adalah …",
+    opts: [
+      "Membatasi kegiatan pelayaran internasional",
+      "Mengurangi pembangunan pelabuhan",
+      "Meningkatkan kualitas pelabuhan, konektivitas, dan layanan logistik",
+      "Menghentikan kerja sama perdagangan dengan negara lain",
+      "Memusatkan seluruh kegiatan ekonomi di satu pulau"
+    ],
+    ans: 2,
+    exp: "Peningkatan kualitas pelabuhan, konektivitas, dan layanan logistik adalah kebijakan paling tepat untuk memanfaatkan posisi strategis Indonesia secara optimal."
+  },
+  {
+    q: "Indonesia berada di jalur pelayaran internasional, tetapi biaya distribusi barang antarpulau masih relatif tinggi. Kesimpulan yang paling tepat adalah …",
+    opts: [
+      "Posisi geografis Indonesia tidak memberikan keuntungan",
+      "Indonesia harus menutup jalur perdagangan internasional",
+      "Posisi strategis perlu didukung infrastruktur transportasi yang memadai",
+      "Perdagangan internasional harus dihentikan",
+      "Seluruh kegiatan ekonomi harus dipindahkan ke wilayah pesisir"
+    ],
+    ans: 2,
+    exp: "Posisi strategis saja tidak cukup; perlu didukung infrastruktur transportasi dan logistik yang memadai agar biaya distribusi turun."
+  },
+  {
+    q: "Posisi Indonesia di antara dua benua menyebabkan interaksi dengan berbagai bangsa sejak masa lalu. Dampak positif yang paling sesuai adalah …",
+    opts: [
+      "Berkembangnya keragaman budaya dan perdagangan",
+      "Hilangnya seluruh budaya lokal",
+      "Berkurangnya kegiatan ekonomi",
+      "Terisolasinya masyarakat Indonesia",
+      "Menurunnya hubungan internasional"
+    ],
+    ans: 0,
+    exp: "Interaksi dengan bangsa lain sejak masa lalu berdampak positif pada perkembangan keragaman budaya dan aktivitas perdagangan Indonesia."
+  },
+  {
+    q: "Jika Indonesia mampu mengembangkan pelabuhan modern di dekat jalur pelayaran internasional, dampak ekonomi yang paling mungkin terjadi adalah …",
+    opts: [
+      "Menurunnya aktivitas ekspor-impor",
+      "Meningkatnya biaya distribusi barang",
+      "Berkembangnya perdagangan, jasa logistik, dan investasi",
+      "Berkurangnya aktivitas ekonomi masyarakat pesisir",
+      "Berkurangnya hubungan Indonesia dengan negara lain"
+    ],
+    ans: 2,
+    exp: "Pelabuhan modern akan mendorong berkembangnya perdagangan, jasa logistik, dan menarik investasi asing."
+  },
+  {
+    q: "Indonesia memiliki wilayah laut luas dan berada pada jalur perdagangan dunia. Strategi yang paling tepat untuk memanfaatkannya secara berkelanjutan adalah …",
+    opts: [
+      "Meningkatkan eksploitasi laut tanpa batas",
+      "Mengembangkan ekonomi maritim dengan tetap menjaga kelestarian laut",
+      "Mengurangi kegiatan perikanan",
+      "Melarang kapal asing melewati perairan Indonesia",
+      "Mengubah seluruh wilayah laut menjadi kawasan industri"
+    ],
+    ans: 1,
+    exp: "Ekonomi maritim yang berkelanjutan menyeimbangkan pemanfaatan ekonomi dan pelestarian ekosistem laut."
+  },
+  {
+    q: "Perhatikan pernyataan berikut! (1) Indonesia menjadi jalur perdagangan internasional. (2) Indonesia memiliki keanekaragaman budaya. (3) Indonesia memiliki potensi ekonomi maritim. (4) Indonesia terbebas dari pengaruh negara lain. Pernyataan yang menunjukkan keuntungan posisi strategis Indonesia adalah …",
+    opts: ["1, 2, dan 3", "1 dan 4", "2 dan 4", "1, 3, dan 4", "2, 3, dan 4"],
+    ans: 0,
+    exp: "Pernyataan 1, 2, dan 3 adalah keuntungan posisi strategis. Pernyataan 4 salah karena Indonesia tetap berinteraksi dengan negara lain."
+  },
+  {
+    q: "Jika Indonesia tidak mampu menjaga keamanan jalur pelayaran di perairannya, dampak yang paling mungkin muncul adalah …",
+    opts: [
+      "Meningkatnya kepercayaan pelaku perdagangan internasional",
+      "Meningkatnya efisiensi distribusi barang",
+      "Menurunnya daya tarik Indonesia sebagai jalur perdagangan",
+      "Meningkatnya potensi investasi secara otomatis",
+      "Semakin murahnya biaya transportasi laut"
+    ],
+    ans: 2,
+    exp: "Keamanan jalur pelayaran adalah faktor utama kepercayaan pelaku perdagangan. Jika tidak aman, daya tarik Indonesia sebagai jalur perdagangan menurun."
+  },
+  {
+    q: "Suatu daerah memiliki hutan luas. Masyarakat memperoleh pendapatan dari hasil hutan, tetapi penebangan berlebihan menyebabkan kerusakan lingkungan. Solusi paling tepat adalah …",
+    opts: [
+      "Menghentikan seluruh kegiatan ekonomi masyarakat",
+      "Melakukan eksploitasi hutan secara lebih besar",
+      "Menerapkan pengelolaan hutan berkelanjutan dan reboisasi",
+      "Mengubah seluruh hutan menjadi perkebunan",
+      "Melarang masyarakat memanfaatkan sumber daya alam"
+    ],
+    ans: 2,
+    exp: "Pengelolaan hutan berkelanjutan dan reboisasi menyeimbangkan kebutuhan ekonomi masyarakat dengan kelestarian lingkungan."
+  },
+  {
+    q: "Indonesia memiliki potensi besar dalam bidang pertanian. Agar potensi tersebut meningkatkan kesejahteraan petani, kebijakan paling tepat adalah …",
+    opts: [
+      "Hanya meningkatkan luas lahan pertanian",
+      "Meningkatkan teknologi, kualitas produksi, pengolahan, dan pemasaran hasil pertanian",
+      "Mengurangi penggunaan teknologi pertanian",
+      "Menghentikan ekspor hasil pertanian",
+      "Mengurangi jenis tanaman yang dibudidayakan"
+    ],
+    ans: 1,
+    exp: "Peningkatan teknologi, kualitas produksi, pengolahan, dan pemasaran akan meningkatkan nilai tambah dan kesejahteraan petani."
+  },
+  {
+    q: "Sebuah wilayah memiliki cadangan mineral besar. Pemerintah ingin memanfaatkannya untuk meningkatkan perekonomian daerah. Kebijakan yang paling mencerminkan prinsip pembangunan berkelanjutan adalah …",
+    opts: [
+      "Mengeksploitasi mineral sebanyak mungkin tanpa memperhatikan lingkungan",
+      "Melarang seluruh aktivitas pertambangan",
+      "Melakukan pertambangan dengan memperhatikan lingkungan serta meningkatkan nilai tambah melalui pengolahan",
+      "Mengekspor seluruh mineral dalam bentuk bahan mentah",
+      "Menyerahkan seluruh pengelolaan kepada pihak asing tanpa pengawasan"
+    ],
+    ans: 2,
+    exp: "Pertambangan yang memperhatikan lingkungan dan meningkatkan nilai tambah (hilirisasi) mencerminkan prinsip pembangunan berkelanjutan."
+  },
+  {
+    q: "Daerah pesisir memiliki hasil perikanan melimpah. Namun, sebagian nelayan masih menjual ikan mentah dengan harga rendah. Upaya paling tepat untuk meningkatkan nilai ekonomi adalah …",
+    opts: [
+      "Mengurangi hasil tangkapan",
+      "Mengembangkan industri pengolahan dan penyimpanan hasil perikanan",
+      "Menghentikan aktivitas nelayan",
+      "Meningkatkan penangkapan ikan tanpa batas",
+      "Mengganti pekerjaan nelayan dengan pekerjaan lain"
+    ],
+    ans: 1,
+    exp: "Industri pengolahan dan penyimpanan meningkatkan nilai tambah hasil perikanan sehingga nelayan mendapat harga lebih baik."
+  },
+  {
+    q: "Indonesia memiliki potensi energi panas bumi besar karena banyak gunung api. Pemanfaatan energi tersebut dapat menjadi solusi karena …",
+    opts: [
+      "Panas bumi tidak membutuhkan pengelolaan",
+      "Panas bumi merupakan sumber energi terbarukan dan mengurangi ketergantungan pada energi fosil",
+      "Seluruh wilayah Indonesia pasti memiliki cadangan panas bumi yang sama",
+      "Panas bumi tidak memerlukan teknologi",
+      "Penggunaan panas bumi tidak memiliki dampak lingkungan sama sekali"
+    ],
+    ans: 1,
+    exp: "Panas bumi adalah energi terbarukan yang dapat mengurangi ketergantungan pada energi fosil."
+  },
+  {
+    q: "Sebuah daerah memiliki lahan cocok untuk perkebunan, tetapi pembukaan dilakukan dengan mengorbankan hutan alami dalam skala besar. Dampak jangka panjang yang paling mungkin terjadi adalah …",
+    opts: [
+      "Meningkatnya keanekaragaman hayati",
+      "Meningkatnya fungsi ekologis hutan",
+      "Berkurangnya habitat dan meningkatnya risiko kerusakan lingkungan",
+      "Meningkatnya kualitas tanah secara otomatis",
+      "Berkurangnya kebutuhan pengelolaan lingkungan"
+    ],
+    ans: 2,
+    exp: "Pembukaan hutan skala besar mengurangi habitat satwa dan meningkatkan risiko banjir, longsor, serta kerusakan lingkungan."
+  },
+  {
+    q: "Perhatikan sumber daya alam berikut: (1) Batu bara (2) Minyak bumi (3) Gas alam (4) Energi surya (5) Panas bumi. Jika pemerintah ingin mengurangi ketergantungan pada sumber energi terbatas, kombinasi yang sebaiknya dikembangkan adalah …",
+    opts: ["1 dan 2", "1 dan 3", "2 dan 3", "4 dan 5", "1 dan 4"],
+    ans: 3,
+    exp: "Energi surya (4) dan panas bumi (5) adalah energi terbarukan yang dapat mengurangi ketergantungan pada energi fosil yang terbatas."
+  },
+  {
+    q: "Suatu wilayah memiliki potensi wisata alam berupa pantai dan terumbu karang. Agar pariwisata memberi manfaat ekonomi tanpa merusak lingkungan, kebijakan paling tepat adalah …",
+    opts: [
+      "Membangun sebanyak mungkin hotel di kawasan pantai",
+      "Membebaskan wisatawan melakukan aktivitas apa pun",
+      "Menerapkan ekowisata dan membatasi aktivitas yang merusak ekosistem",
+      "Mengeksploitasi terumbu karang sebagai cendera mata",
+      "Membuka seluruh kawasan konservasi untuk wisata massal"
+    ],
+    ans: 2,
+    exp: "Ekowisata dengan pembatasan aktivitas merusak menjaga keseimbangan antara manfaat ekonomi dan kelestarian ekosistem."
+  },
+  {
+    q: "Salah satu penyebab Indonesia belum memperoleh manfaat maksimal dari kekayaan sumber daya alam adalah …",
+    opts: [
+      "Indonesia tidak memiliki sumber daya alam yang cukup",
+      "Seluruh sumber daya alam Indonesia berada di wilayah perkotaan",
+      "Keterbatasan teknologi, kualitas SDM, infrastruktur, dan pengelolaan",
+      "Indonesia tidak memiliki wilayah laut",
+      "Masyarakat Indonesia tidak membutuhkan sumber daya alam"
+    ],
+    ans: 2,
+    exp: "Keterbatasan teknologi, kualitas SDM, infrastruktur, dan pengelolaan menjadi penghambat utama optimalisasi manfaat SDA."
+  },
+  {
+    q: "Pemerintah daerah memiliki dua pilihan: menjual bahan mentah ke luar daerah atau mengolahnya menjadi produk jadi. Jika tujuan utamanya meningkatkan nilai tambah dan lapangan kerja, pilihan tepat adalah …",
+    opts: [
+      "Menjual seluruh bahan mentah",
+      "Mengurangi produksi sumber daya alam",
+      "Mengembangkan industri pengolahan dengan tetap memperhatikan keberlanjutan",
+      "Menghentikan perdagangan antardaerah",
+      "Mengimpor kembali bahan mentah tersebut"
+    ],
+    ans: 2,
+    exp: "Hilirisasi melalui industri pengolahan meningkatkan nilai tambah dan menciptakan lapangan kerja, dengan tetap menjaga keberlanjutan."
+  },
+  {
+    q: "Indonesia memiliki potensi besar dalam bidang pertanian karena kondisi iklim dan tanahnya. Agar potensi tersebut mampu meningkatkan kesejahteraan petani, kebijakan yang paling tepat adalah …",
+    opts: [
+      "Hanya meningkatkan luas lahan pertanian",
+      "Meningkatkan teknologi, kualitas produksi, pengolahan, dan pemasaran hasil pertanian",
+      "Mengurangi penggunaan teknologi pertanian",
+      "Menghentikan ekspor hasil pertanian",
+      "Mengurangi jenis tanaman yang dibudidayakan"
+    ],
+    ans: 1,
+    exp: "Peningkatan teknologi, kualitas produksi, pengolahan, dan pemasaran hasil pertanian adalah kebijakan komprehensif untuk kesejahteraan petani."
+  },
+  {
+    q: "Perhatikan beberapa sumber daya alam berikut: (1) Batu bara (2) Minyak bumi (3) Gas alam (4) Energi surya (5) Panas bumi. Jika pemerintah ingin mengurangi ketergantungan pada sumber energi yang terbatas, kombinasi yang sebaiknya dikembangkan adalah …",
+    opts: ["1 dan 2", "1 dan 3", "2 dan 3", "4 dan 5", "1 dan 4"],
+    ans: 3,
+    exp: "Energi surya dan panas bumi adalah energi terbarukan yang dapat mengurangi ketergantungan pada energi fosil."
+  },
+  {
+    q: "Suatu wilayah memiliki potensi wisata alam berupa pantai dan terumbu karang. Agar kegiatan pariwisata memberikan manfaat ekonomi tanpa merusak lingkungan, kebijakan yang paling tepat adalah …",
+    opts: [
+      "Membangun sebanyak mungkin hotel di kawasan pantai",
+      "Membebaskan wisatawan melakukan aktivitas apa pun",
+      "Menerapkan ekowisata dan membatasi aktivitas yang merusak ekosistem",
+      "Mengeksploitasi terumbu karang sebagai cendera mata",
+      "Membuka seluruh kawasan konservasi untuk wisata massal"
+    ],
+    ans: 2,
+    exp: "Ekowisata dengan pembatasan aktivitas yang merusak ekosistem menjaga keseimbangan manfaat ekonomi dan kelestarian lingkungan."
+  },
+  {
+    q: "Pemerintah daerah memiliki dua pilihan dalam mengelola sumber daya alam: menjual bahan mentah ke luar daerah atau mengolahnya menjadi produk jadi. Jika tujuan utamanya meningkatkan nilai tambah dan lapangan kerja, pilihan yang lebih tepat adalah …",
+    opts: [
+      "Menjual seluruh bahan mentah",
+      "Mengurangi produksi sumber daya alam",
+      "Mengembangkan industri pengolahan dengan tetap memperhatikan keberlanjutan",
+      "Menghentikan perdagangan antardaerah",
+      "Mengimpor kembali bahan mentah tersebut"
+    ],
+    ans: 2,
+    exp: "Pengembangan industri pengolahan (hilirisasi) meningkatkan nilai tambah, menciptakan lapangan kerja, dan tetap memperhatikan keberlanjutan."
+  },
+  {
+    q: "Indonesia memiliki potensi energi panas bumi yang besar karena banyak terdapat gunung api. Pemanfaatan energi tersebut dapat menjadi solusi karena …",
+    opts: [
+      "Panas bumi merupakan sumber energi yang tidak membutuhkan pengelolaan",
+      "Panas bumi dapat menjadi salah satu sumber energi terbarukan dan mengurangi ketergantungan pada energi fosil",
+      "Seluruh wilayah Indonesia pasti memiliki cadangan panas bumi yang sama",
+      "Panas bumi tidak memerlukan teknologi",
+      "Penggunaan panas bumi tidak memiliki dampak lingkungan sama sekali"
+    ],
+    ans: 1,
+    exp: "Panas bumi adalah energi terbarukan yang dapat mengurangi ketergantungan pada energi fosil."
+  }
+];
+
+// ============================================================
+// DATA SOAL BENAR / SALAH (10 SOAL)
+// ============================================================
+const tfData = [
+  {
+    q: "Letak astronomis Indonesia berada di 6°LU–11°LS dan 95°BT–141°BT, yang menyebabkan Indonesia beriklim tropis.",
+    ans: "B",
+    exp: "BENAR. Letak astronomis tersebut menyebabkan Indonesia beriklim tropis dengan curah hujan tinggi dan penyinaran matahari sepanjang tahun."
+  },
+  {
+    q: "Pembangunan berkelanjutan hanya berfokus pada aspek ekonomi tanpa memperhatikan aspek sosial dan lingkungan.",
+    ans: "S",
+    exp: "SALAH. Pembangunan berkelanjutan memiliki tiga pilar yang saling terkait: ekonomi, sosial, dan lingkungan."
+  },
+  {
+    q: "Barang tambang golongan A (strategis) contohnya adalah minyak bumi, gas alam, dan batu bara.",
+    ans: "B",
+    exp: "BENAR. Golongan A (strategis) meliputi minyak bumi, gas alam, dan batu bara yang penting bagi kedaulatan dan ketahanan energi negara."
+  },
+  {
+    q: "Arus Lintas Indonesia (Arlindo) membawa massa air dari Samudra Hindia ke Samudra Pasifik.",
+    ans: "S",
+    exp: "SALAH. Arlindo justru membawa massa air dari Samudra Pasifik ke Samudra Hindia melalui perairan Indonesia."
+  },
+  {
+    q: "AMDAL bertujuan untuk memastikan suatu kegiatan usaha tidak menimbulkan dampak penting terhadap lingkungan hidup.",
+    ans: "B",
+    exp: "BENAR. AMDAL adalah kajian untuk mengidentifikasi, memprakirakan, dan mengevaluasi dampak penting suatu kegiatan agar dapat dikelola dengan baik."
+  },
+  {
+    q: "Indonesia terbagi menjadi tiga zona waktu: WIB (UTC+7), WITA (UTC+8), dan WIT (UTC+9).",
+    ans: "B",
+    exp: "BENAR. Pembagian zona waktu ini bertujuan menyelaraskan kegiatan ekonomi, transportasi, dan komunikasi nasional."
+  },
+  {
+    q: "Hutan mangrove di Indonesia hanya tumbuh di pesisir Pulau Jawa saja.",
+    ans: "S",
+    exp: "SALAH. Hutan mangrove tersebar luas di Indonesia, terutama di Papua, Kalimantan, Sulawesi, dan Sumatera."
+  },
+  {
+    q: "Pembangkit Listrik Tenaga Panas Bumi (PLTP) terbesar di Indonesia terletak di Gunung Salak, Jawa Barat.",
+    ans: "B",
+    exp: "BENAR. PLTP Gunung Salak memiliki kapasitas terpasang sekitar 377 MW, salah satu yang terbesar di Indonesia."
+  },
+  {
+    q: "Hilirisasi sumber daya alam bertujuan untuk meningkatkan nilai tambah dan menciptakan lapangan kerja.",
+    ans: "B",
+    exp: "BENAR. Hilirisasi mengolah bahan mentah menjadi produk jadi sehingga nilai tambah meningkat dan lapangan kerja tercipta."
+  },
+  {
+    q: "Sabana dan stepa adalah jenis hutan yang tumbuh di daerah dengan curah hujan sangat tinggi.",
+    ans: "S",
+    exp: "SALAH. Sabana dan stepa justru tumbuh di daerah dengan curah hujan rendah hingga sedang, bukan di daerah hujan sangat tinggi."
+  }
+];
+
+// ============================================================
+// DATA SOAL ESSAY HOTS (5 SOAL)
+// ============================================================
+const essayData = [
+  {
+    q: "Mengapa posisi strategis Indonesiasebagai jalur pelayaran internasional sekaligus menjadi peluang dan tantangan? Berikan analisis Anda dengan mengaitkan aspek ekonomi, sosial-budaya, dan keamanan!",
+    exp: "PELUANG: (1) Ekonomi — Indonesia menjadi jalur perdagangan dunia yang meningkatkan devisa, investasi, dan pertumbuhan ekonomi; (2) Sosial-budaya — interaksi dengan bangsa lain memperkaya budaya dan memperluas wawasan; (3) Transportasi — menjadi penghubung strategis Asia-Australia. TANTANGAN: (1) Keamanan — risiko penyelundupan, illegal fishing, dan gangguan keamanan jalur pelayaran; (2) Sosial-budaya — masuknya budaya asing yang harus disikapi selektif agar tidak mengikis budaya lokal; (3) Ekonomi — ketergantungan pada perdagangan internasional dan persaingan global. Kesimpulan: diperlukan kebijakan holistik yang memanfaatkan peluang sekaligus memitigasi tantangan."
+  },
+  {
+    q: "Bandingkan prinsip pembangunan berkelanjutan dengan praktik eksploitasi sumber daya alam yang tidak terkendali. Berikan contoh konkret dari sektor kehutanan atau pertambangan di Indonesia!",
+    exp: "Pembangunan berkelanjutan berprinsip pada tiga pilar: ekonomi (pertumbuhan), sosial (kesejahteraan masyarakat), dan lingkungan (pelestarian). Eksploitasi tidak terkendali hanya mengejar keuntungan ekonomi jangka pendek tanpa memperhatikan dampak lingkungan dan sosial. Contoh: (1) Kehutanan — penebangan liar (illegal logging) dan alih fungsi hutan menjadi perkebunan sawit menyebabkan deforestasi >9 juta hektar (2002–2020), hilangnya habitat, dan bencana banjir; sebaliknya, pengelolaan hutan lestari (HPT/HP) dengan tebang pilih dan reboisasi menjaga kelestarian. (2) Pertambangan — eksploitasi mineral tanpa reklamasi menyebabkan kerusakan lahan; sebaliknya, pertambangan dengan AMDAL, reklamasi, dan hilirisasi mencerminkan prinsip keberlanjutan. Kesimpulan: pembangunan berkelanjutan memerlukan keseimbangan tiga pilar, bukan eksploitasi sepihak."
+  },
+  {
+    q: "Jelaskan mengapa persebaran ikan laut di Indonesia berbeda-beda di setiap wilayah! Kaitkan dengan faktor oseanografi (Arlindo, upwelling), kondisi geografis, dan ekosistem pendukung!",
+    exp: "Persebaran ikan laut Indonesia berbeda karena: (1) Arus Lintas Indonesia (Arlindo) membawa massa air hangat kaya nutrisi dari Pasifik ke Hindia, memicu pertumbuhan plankton sebagai pakan utama ikan; (2) Upwelling mengangkat air laut dalam kaya zat hara ke permukaan (misalnya di Laut Banda dan Selatan Jawa), menciptakan perairan subur; (3) Kondisi geografis — wilayah perairan sangat luas (6,4 juta km²) dengan bentuk dasar laut bervariasi: laut dangkal (Laut Jawa, Arafura) kaya ikan dasar (kakap, bawal, udang), laut dalam (Indonesia Timur) menjadi habitat ikan pelagis besar (tuna, cakalang); (4) Ekosistem pendukung — terumbu karang, mangrove, dan padang lamun sebagai spawning ground, nursery ground, dan feeding ground bagi berbagai biota laut; (5) Sinar matahari sepanjang tahun menjaga suhu air stabil sehingga fitoplankton tumbuh subur. Kombinasi faktor-faktor ini menciptakan perbedaan jenis dan kepadatan ikan di setiap wilayah."
+  },
+  {
+    q: "Analisislah peran AMDAL dalam mencegah kerusakan lingkungan akibat kegiatan pertambangan dan industri! Kaitkan dengan PP No. 22 Tahun 2021 dan prinsip pembangunan berkelanjutan!",
+    exp: "AMDAL (Analisis Mengenai Dampak Lingkungan) adalah kajian untuk mengidentifikasi, memprakirakan, dan mengevaluasi dampak penting suatu kegiatan usaha terhadap lingkungan. Berdasarkan PP No. 22 Tahun 2021, AMDAL wajib dilakukan untuk kegiatan yang berpotensi menimbulkan dampak penting. AMDAL menganalisis 7 kriteria dampak penting: besarnya jumlah penduduk terdampak, luas wilayah penyebaran dampak, intensitas dan lamanya dampak, banyaknya komponen lingkungan terdampak, sifat kumulatif dampak, berbalik atau tidak berbaliknya dampak, dan kriteria lain. Peran AMDAL dalam mencegah kerusakan: (1) mencegah kegiatan yang merusak lingkungan sebelum dimulai; (2) memberikan data ilmiah untuk pengambilan keputusan; (3) mewajibkan pengelolaan dan pemantauan lingkungan; (4) melibatkan masyarakat dalam pengambilan keputusan. Kaitannya dengan pembangunan berkelanjutan: AMDAL memastikan aspek lingkungan dan sosial diperhitungkan sebelum aspek ekonomi, sehingga tercipta keseimbangan tiga pilar keberlanjutan."
+  },
+  {
+    q: "Indonesia memiliki potensi energi panas bumi terbesar di dunia, tetapi pemanfaatannya belum optimal. Analisislah faktor-faktor penghambat dan strategi yang tepat untuk mengatasinya dengan mengaitkan konsep pembangunan berkelanjutan!",
+    exp: "POTENSI: Indonesia menyimpan sekitar 40% cadangan panas bumi dunia dengan kapasitas terpasang saat ini sekitar 2.384 MW (2024). PLTP terbesar antara lain Gunung Salak (377 MW, Jawa Barat), Sarulla (330 MW, Sumatera Utara), Darajat (270 MW, Jawa Barat), dan Kamojang (235 MW, Jawa Barat). PENGHAMBAT: (1) Biaya investasi awal sangat tinggi (pemboran eksplorasi mahal dan berisiko); (2) Lokasi potensi panas bumi sering berada di kawasan konservasi atau hutan lindung yang memiliki regulasi ketat; (3) Keterbatasan teknologi dan SDM ahli di bidang geotermal; (4) Konflik lahan dengan masyarakat setempat; (5) Harga listrik dari panas bumi belum sepenuhnya kompetitif dibanding energi fosil. STRATEGI: (1) Insentif fiskal dan kemudahan perizinan untuk investor panas bumi; (2) Pengembangan teknologi eksplorasi yang lebih efisien dan murah; (3) Peningkatan kapasitas SDM melalui pendidikan dan pelatihan; (4) Pendekatan partisipatif dengan masyarakat adat; (5) Integrasi dengan kebijakan transisi energi nasional menuju Net Zero Emission 2060. Kaitannya dengan pembangunan berkelanjutan: panas bumi adalah energi terbarukan yang ramah lingkungan (pilar lingkungan), menciptakan lapangan kerja (pilar ekonomi), dan meningkatkan akses energi bersih bagi masyarakat (pilar sosial)."
+  }
+];
+
+// ============================================================
+// RENDER SOAL KE HTML
+// ============================================================
+const pgContainer = document.getElementById('pg-container');
+pgData.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'question-card';
+  card.innerHTML = `
+    <span class="q-num">PG ${i+1}</span>
+    <div class="q-text">${item.q}</div>
+    <div class="options">
+      ${item.opts.map((opt, j) => `
+        <label>
+          <input type="radio" name="pg${i}" value="${j}">
+          <span>${String.fromCharCode(65+j)}. ${opt}</span>
+        </label>
+      `).join('')}
+    </div>
+    <button class="check-btn" onclick="toggleAnswer('ans-pg-${i}')">Lihat Kunci</button>
+    <div class="answer-box" id="ans-pg-${i}">
+      <div class="label">✅ Jawaban: ${String.fromCharCode(65+item.ans)}</div>
+      <div>${item.exp}</div>
+    </div>
+  `;
+  pgContainer.appendChild(card);
+});
+
+const tfContainer = document.getElementById('tf-container');
+tfData.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'question-card';
+  card.innerHTML = `
+    <span class="q-num">B/S ${i+1}</span>
+    <div class="q-text">${item.q}</div>
+    <div class="tf-options">
+      <label><input type="radio" name="tf${i}" value="B"> ✅ Benar</label>
+      <label><input type="radio" name="tf${i}" value="S"> ❌ Salah</label>
+    </div>
+    <button class="check-btn" onclick="toggleAnswer('ans-tf-${i}')">Lihat Kunci</button>
+    <div class="answer-box" id="ans-tf-${i}">
+      <div class="label">✅ Jawaban: ${item.ans === 'B' ? 'BENAR' : 'SALAH'}</div>
+      <div>${item.exp}</div>
+    </div>
+  `;
+  tfContainer.appendChild(card);
+});
+
+const essayContainer = document.getElementById('essay-container');
+essayData.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'question-card essay';
+  card.innerHTML = `
+    <span class="q-num">ESSAY ${i+1}</span>
+    <div class="q-text">${item.q}</div>
+    <textarea placeholder="Tulis jawaban Anda di sini..." id="essay-${i}"></textarea>
+    <button class="check-btn" onclick="toggleAnswer('ans-essay-${i}')">Lihat Kunci</button>
+    <div class="answer-box explanation" id="ans-essay-${i}">
+      <div class="label">📝 Kunci Jawaban</div>
+      <div>${item.exp}</div>
+    </div>
+  `;
+  essayContainer.appendChild(card);
+});
+
+// ============================================================
+// FUNGSI INTERAKTIF
+// ============================================================
+function toggleAnswer(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('show');
+}
+
+let allAnswersShown = false;
+function toggleAllAnswers() {
+  allAnswersShown = !allAnswersShown;
+  document.querySelectorAll('.answer-box').forEach(el => {
+    if (allAnswersShown) el.classList.add('show');
+    else el.classList.remove('show');
+  });
+}
+
+function checkAll() {
+  let correct = 0;
+  let total = 0;
+
+  // Cek PG
+  pgData.forEach((item, i) => {
+    const selected = document.querySelector(`input[name="pg${i}"]:checked`);
+    if (selected) {
+      total++;
+      if (parseInt(selected.value) === item.ans) correct++;
+    }
+  });
+
+  // Cek B/S
+  tfData.forEach((item, i) => {
+    const selected = document.querySelector(`input[name="tf${i}"]:checked`);
+    if (selected) {
+      total++;
+      if (selected.value === item.ans) correct++;
+    }
+  });
+
+  const panel = document.getElementById('resultPanel');
+  const circle = document.getElementById('scoreCircle');
+  const detail = document.getElementById('resultDetail');
+
+  if (total === 0) {
+    panel.classList.add('show');
+    circle.textContent = '—';
+    detail.textContent = 'Silakan jawab minimal satu soal terlebih dahulu.';
+    return;
+  }
+
+  const pct = Math.round((correct / total) * 100);
+  circle.textContent = pct + '%';
+  let grade = '';
+  if (pct >= 90) grade = '🏆 Luar Biasa!';
+  else if (pct >= 75) grade = '👍 Baik Sekali!';
+  else if (pct >= 60) grade = '📖 Cukup, tingkatkan lagi!';
+  else grade = '💪 Perlu belajar lebih giat!';
+
+  detail.innerHTML = `Jawaban benar: <strong>${correct}</strong> dari <strong>${total}</strong> soal yang dijawab (PG + B/S).<br>${grade}`;
+  panel.classList.add('show');
+
+  // Tampilkan kunci untuk soal yang belum dijawab
+  pgData.forEach((item, i) => {
+    const selected = document.querySelector(`input[name="pg${i}"]:checked`);
+    const ansBox = document.getElementById(`ans-pg-${i}`);
+    if (!selected && ansBox) ansBox.classList.add('show');
+  });
+  tfData.forEach((item, i) => {
+    const selected = document.querySelector(`input[name="tf${i}"]:checked`);
+    const ansBox = document.getElementById(`ans-tf-${i}`);
+    if (!selected && ansBox) ansBox.classList.add('show');
+  });
+}
+
+function resetAll() {
+  document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+  document.querySelectorAll('textarea').forEach(el => el.value = '');
+  document.querySelectorAll('.answer-box').forEach(el => el.classList.remove('show'));
+  document.getElementById('resultPanel').classList.remove('show');
+  allAnswersShown = false;
+}
+
+// Animasi scroll halus
+document.querySelectorAll('.section-title').forEach(el => {
+  el.addEventListener('click', () => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
